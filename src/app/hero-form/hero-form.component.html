@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row pt-4 justify-content-center">
+
+      <div class="shadow-sm p-4 col-4 rounded align-items-center"
+        [hidden]="submitted">
+
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+          <h1>Hero Form</h1>
+
+          <div class="input-group mb-4 pt-3">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="name"
+                required [(ngModel)]="model.name" name="name" #name="ngModel">
+              <label for="name">Name</label>
+            </div>
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+              Please choose a name.
+            </div>
+          </div>
+
+          <div class="input-group mb-4">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="alterEgo"
+                required [(ngModel)]="model.alterEgo" name="alterEgo">
+              <label for="alterEgo">Alter Ego</label>
+            </div>
+          </div>
+
+          <div class="input-group mb-4">
+            <div class="form-floating">
+              <select class="form-select" id="power"
+                required [(ngModel)]="model.power" name="power">
+                <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+              </select>
+              <label for="power">Hero Power</label>
+            </div>
+          </div>
+
+          <div class="row justify-content-evenly">
+            <div class="col-3">
+              <button type="button" class="btn btn-primary"
+              (click)="newHero(); heroForm.reset()">New Hero</button>
+            </div>
+
+            <div class="col-3">
+              <button type="submit" class="btn btn-success"
+              [disabled]="!heroForm.form.valid">Submit</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="shadow-sm p-4 col-4 rounded align-items-center text-center"
+        [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row mb-2">
+          <dt class="col-xs-3">Name</dt>
+          <dd class="col-xs-9">{{ model.name }}</dd>
+        </div>
+        <div class="row mb-2">
+          <dt class="col-xs-3">Alter Ego</dt>
+          <dd class="col-xs-9">{{ model.alterEgo }}</dd>
+        </div>
+        <div class="row mb-2">
+          <dt class="col-xs-3">Power</dt>
+          <dd class="col-xs-9">{{ model.power }}</dd>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+      </div>
+
+
+
+
+
+  </div>
+
+</div>
+
