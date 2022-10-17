@@ -6,11 +6,11 @@
 
         <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
           <h1>Hero Form</h1>
-
+            {{model | json}}
           <div class="input-group mb-4 pt-3">
             <div class="form-floating">
               <input type="text" class="form-control" id="name"
-                required [(ngModel)]="model.name" name="name" #name="ngModel">
+                required [(ngModel)]="model.name" name="name" #name="ngModel"> {{name}}
               <label for="name">Name</label>
             </div>
             <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
